@@ -5,8 +5,10 @@ const APIkey = "db564efd201bdbb52479e58ddd22fc02"
 
 //URLS
 var city = $('#city-input').val();
-
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIkey;
+
+//dates
+var current = moment().format('LL'); 
 
 console.log("city", city)
 console.log("queryURL", queryURL)
@@ -28,9 +30,14 @@ $('#find-city').on('click', function (event) {
         method: "GET"
     }).then(function (response) {
         console.log(response)
-        $('.city-name').text(JSON.stringify(response.city.name))
+        //append city name
+        $('.city-name').text(JSON.stringify(response.city.name) + " "  + current)
+        //add current temp
         console.log(response.list[0].main.temp)
         $('.temp').text("Current Temperature: " + JSON.stringify(response.list[0].main.temp) + "°F")
+
+        //add current humidity
+        $(".humid").text("Humidity: " + JSON.stringify(response.list[0].main.humidity) + "%")
     })
 
 })
