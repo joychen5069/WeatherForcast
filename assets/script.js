@@ -7,6 +7,7 @@ const APIkey = "db564efd201bdbb52479e58ddd22fc02"
 var city = $('#city-input').val();
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIkey;
 
+
 //dates
 var current = moment().format('LL'); 
 
@@ -43,6 +44,19 @@ $('#find-city').on('click', function (event) {
         $(".wind").text("Wind Speed: " + JSON.stringify(response.list[0].wind.speed) + " MPH")
 
         //add current UV index
+        var lat = JSON.stringify(response.city.coord.lat);
+        console.log(lat);
+        var lon = JSON.stringify(response.city.coord.lon);
+        console.log(lon)
+
+        var UVURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" + APIkey + "&lat=" + lat + "&lon=" + lon; 
+        $.ajax({
+            url: UVURL,
+            method: "GET"
+        }).then(function(response){
+            console.log(response)
+            $('.UV').text("UV Index: " + JSON.stringify(response[0].value))
+        })
     })
 
 })
