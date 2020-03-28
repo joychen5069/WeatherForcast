@@ -34,10 +34,15 @@ $('#find-city').on('click', function (event) {
         $('.city-name').text(JSON.stringify(response.city.name) + " "  + current)
         //add current temp
         console.log(response.list[0].main.temp)
-        $('.temp').text("Current Temperature: " + JSON.stringify(response.list[0].main.temp) + "°F")
+        $('.temp').text("Current Temperature: " + JSON.stringify(response.list[0].main.temp) + " °F")
 
         //add current humidity
-        $(".humid").text("Humidity: " + JSON.stringify(response.list[0].main.humidity) + "%")
+        $(".humid").text("Humidity: " + JSON.stringify(response.list[0].main.humidity) + " %")
+
+        //add current windspeed
+        $(".wind").text("Wind Speed: " + JSON.stringify(response.list[0].wind.speed) + " MPH")
+
+        //add current UV index
     })
 
 })
