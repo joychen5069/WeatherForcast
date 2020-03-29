@@ -1,3 +1,26 @@
 body {
     background-color: aqua;
 }
+
+/* add UV index below */
+.UVlow {
+    background-color: rgb(95, 255, 95);
+}
+
+.UVmed {
+    background-color: yellow;
+}
+
+.UVhigh {
+    background-color: rgb(255, 145, 0);
+}
+
+.UVvery {
+    background-color: red;
+    color: white;
+}
+
+.UVext {
+    background-color: purple;
+    color: white;
+}

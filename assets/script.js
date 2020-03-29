@@ -13,22 +13,25 @@ $('#find-city').on('click', function (event) {
     event.preventDefault();
 
     var city = $('#city-input').val();
-    var listCity = ['', '', '', '', ''];
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIkey;
 
     console.log("city", city);
     console.log("queryURL", queryURL);
 
+ 
+    //pull from API
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         console.log(response)
-        var icon = "<img src='http://openweathermap.org/img/wn/";
-        var iconEnd = "@3x.png' alt='Weather Icon'>";
-        //append city name and icon
+        var icon = response.list[0].weather[0].icon
+        console.log(icon)
+        var iconURL = "http://openweathermap.org/img/w/" + icon + ".png";
+       
+        //append city name
         $('.city-name').text(JSON.stringify(response.city.name) + " " + current)
-
+        $('.icon').attr('src', iconURL)
         //add current temp
         console.log(response.list[0].main.temp)
         $('.temp').text("Current Temperature: " + JSON.stringify(response.list[0].main.temp) + " °F")
@@ -52,6 +55,23 @@ $('#find-city').on('click', function (event) {
         }).then(function (response) {
             console.log(response)
             $('.UV').text("UV Index: " + JSON.stringify(response[0].value))
+
+            //add class to UV to add color later
+            if ($('.UV').val() < 3) {
+                $('.UV').attr('class', 'UVlow')
+            }
+            else if ($('.UV').val() >= 3 && $('.UV').val() < 6) {
+                $('.UV').attr('class', 'UVmed')
+            }
+            else if ($('.UV').val() >= 6 && $('.UV').val() < 8) {
+                $('.UV').attr('class', 'UVhigh')
+            }
+            else if ($('.UV').val() >= 8 && $('.UV').val() < 11) {
+                $('.UV').attr('class', 'UVvery')
+            }
+            else if ($('.UV').val() >= 11) {
+                $('.UV').attr('class', 'UVext')
+            }
         })
 
         //create five day weather forcast
@@ -62,6 +82,13 @@ $('#find-city').on('click', function (event) {
             $('#date' + i).append(futureDay)
             console.log(futureDay)
 
+
+            //add icon
+            var iconFut = response.list[i].weather[0].icon
+            var iconURLFut = "http://openweathermap.org/img/w/" + iconFut + ".png";
+            console.log(iconURLFut)
+            $('#icon' + i).attr('src', iconURLFut)
+
             //add temp
             var tempFut = ("Temperature: " + JSON.stringify(response.list[i].main.temp) + " °F")
             console.log(tempFut)
@@ -71,6 +98,7 @@ $('#find-city').on('click', function (event) {
             var humidFut = ("Humidity: " + JSON.stringify(response.list[i].main.humidity) + " %")
             console.log(humidFut)
             $('#humid' + i).append(humidFut)
+            
 
         }
 
@@ -92,6 +120,7 @@ $('#find-city').on('click', function (event) {
     $('#list').empty();
     $('#list').append(ul);
 
+    //create a new list item for each city search and add to beginning of list
     searchList.forEach(function (searchList) {
         var li = document.createElement("li");
         ul.prepend(li);
