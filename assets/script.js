@@ -5,7 +5,7 @@ const APIkey = "db564efd201bdbb52479e58ddd22fc02"
 
 
 //dates
-var current = moment().format('LL');
+var current = moment().format('L');
 
 //search for a city
 $('#find-city').on('click', function (event) {
@@ -80,8 +80,9 @@ $('#find-city').on('click', function (event) {
         //create five day weather forcast
         var date = 1
         for (var i = 1; i < 6; i++) {
-            var futureDay = moment().add(i, 'days').calendar();
+            var futureDay = moment().add(i, 'days').format('L');
             // var day = JSON.parse($(".date" + i))
+            $('#date' + i).empty();
             $('#date' + i).append(futureDay)
             console.log(futureDay)
 
@@ -95,11 +96,13 @@ $('#find-city').on('click', function (event) {
             //add temp
             var tempFut = ("Temperature: " + JSON.stringify(response.list[i].main.temp) + " °F")
             console.log(tempFut)
+            $('#temp' + i).empty();
             $('#temp' + i).append(tempFut)
 
             //add humidity 
             var humidFut = ("Humidity: " + JSON.stringify(response.list[i].main.humidity) + " %")
             console.log(humidFut)
+            $('#humid' + i).empty();
             $('#humid' + i).append(humidFut)
             
 
