@@ -14,20 +14,28 @@
   </head>
 
   <body>
+      <div class="container">
     <header>
       Weather Dashboard
     </header>
     <form id="city-form">
+        <!-- insert search bar with side nav-->
         <label for="city-input"> Search for City</label>
         <input type="text" id="city-input"><br>
+
+        <!-- add search button -->
+        <input id="find-city" type="submit" value="city search">
     </form>
-    <!-- insert search bar with side nav-->
-    <div class="sidenav">
+    
+    <div class="search-list">
       <!-- insert past searches here -->
+      <ul id="list"></ul>
     </div>
 
     <!-- insert main content below -->
     <div>
+        <h3 class="city-name"></h3>
+        <div class="icon"></div>
       <div class="temp"></div>
       <div class="humid"></div>
       <div class="wind"></div>
@@ -35,9 +43,39 @@
     </div>
 
     <div class="fiveDay">
+        <div class="day day1 col-2">
+            <div id=date1></div>
+            <div id=icon1></div>
+            <div id=temp1></div>
+            <div id=humid1></div>
+        </div>
+        <div class="day day2 col-2">
+            <div id=date2></div>
+            <div id=icon2></div>
+            <div id=temp2></div>
+            <div id=humid2></div>
+        </div>
+        <div class="day day3 col-2">
+            <div id=date3></div>
+            <div id=icon3></div>
+            <div id=temp3></div>
+            <div id=humid3></div>
+        </div>
+        <div class="day day4 col-2">
+            <div id=date4></div>
+            <div id=icon4></div>
+            <div id=temp4></div>
+            <div id=humid4></div>
+        </div>
+        <div class="day day5 col-2">
+            <div id=date5></div>
+            <div id=icon5></div>
+            <div id=temp5></div>
+            <div id=humid5></div>
+        </div>
 
     </div>
-
+</div>
     <!-- script tags below -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -54,6 +92,8 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
   </body>
 </html>
