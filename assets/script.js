@@ -94,7 +94,7 @@ $('#find-city').on('click', function (event) {
 
     searchList.forEach(function (searchList) {
         var li = document.createElement("li");
-        ul.append(li);
+        ul.prepend(li);
         li.innerHTML += searchList
     })
     
