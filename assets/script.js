@@ -3,16 +3,9 @@ console.log("linked to html")
 //API key
 const APIkey = "db564efd201bdbb52479e58ddd22fc02"
 
-//URLS
-// var city = $('#city-input').val();
-// var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIkey;
-
 
 //dates
 var current = moment().format('LL');
-
-// // console.log("city", city)
-// console.log("queryURL", queryURL)
 
 //search for a city
 $('#find-city').on('click', function (event) {
@@ -20,7 +13,7 @@ $('#find-city').on('click', function (event) {
     event.preventDefault();
 
     var city = $('#city-input').val();
-    var listCity = ['','','','',''];
+    var listCity = ['', '', '', '', ''];
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIkey;
 
     console.log("city", city);
@@ -31,11 +24,11 @@ $('#find-city').on('click', function (event) {
         method: "GET"
     }).then(function (response) {
         console.log(response)
-        var icon =  "<img src='http://openweathermap.org/img/wn/";
+        var icon = "<img src='http://openweathermap.org/img/wn/";
         var iconEnd = "@3x.png' alt='Weather Icon'>";
         //append city name and icon
         $('.city-name').text(JSON.stringify(response.city.name) + " " + current)
-      
+
         //add current temp
         console.log(response.list[0].main.temp)
         $('.temp').text("Current Temperature: " + JSON.stringify(response.list[0].main.temp) + " °F")
@@ -66,7 +59,7 @@ $('#find-city').on('click', function (event) {
         for (var i = 1; i < 6; i++) {
             var futureDay = moment().add(i, 'days').calendar();
             // var day = JSON.parse($(".date" + i))
-            $('#date'+ i).append(futureDay)
+            $('#date' + i).append(futureDay)
             console.log(futureDay)
 
             //add temp
@@ -78,33 +71,32 @@ $('#find-city').on('click', function (event) {
             var humidFut = ("Humidity: " + JSON.stringify(response.list[i].main.humidity) + " %")
             console.log(humidFut)
             $('#humid' + i).append(humidFut)
-            
+
         }
 
 
     })
     //create old searches list in local storage
-    // if (localStorage.getItem('list') === null) {
-    //     var list = [];
-    // }
-    // else {
-    //     var list = localStorage.getItem('list')
-    // }
-    // console.log(city)
-    // var cityArr = $.makeArray(city)
-    // list.push(cityArr);
-    // localStorage.setItem("list", list);
+     if (localStorage.getItem('#list') === null) {
+        var searchList = []
+    }
+    else {
+        var searchList = JSON.parse(localStorage.getItem('#list'))
+    }
+  
+    searchList.push(city)
+    console.log(searchList)
+    localStorage.setItem('#list', JSON.stringify(searchList))
 
-    // var ul = $('<ul></ul>')
-    // ul.innerHTML = city
-    // document.getElementById('list').appendChild(ul);
-    // console.log(list)
+    var ul = document.createElement("ul");
+    $('#list').empty();
+    $('#list').append(ul);
 
-    // list.forEach(function (list) {
-    //     var li = $('<li></li>');
-    //     ul.append(li);
-    //     li.innerHTML += list;
-    // })
-    // $(".search-list").prepend(city)
+    searchList.forEach(function (searchList) {
+        var li = document.createElement("li");
+        ul.append(li);
+        li.innerHTML += searchList
+    })
+    
 })
 
