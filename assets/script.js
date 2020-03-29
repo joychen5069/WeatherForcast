@@ -56,20 +56,23 @@ $('#find-city').on('click', function (event) {
             console.log(response)
             $('.UV').text("UV Index: " + JSON.stringify(response[0].value))
 
+            var UVIndex = JSON.stringify(response[0].value)
+            console.log(UVIndex)
+
             //add class to UV to add color later
-            if ($('.UV').val() < 3) {
+            if (UVIndex < 3) {
                 $('.UV').attr('class', 'UVlow')
             }
-            else if ($('.UV').val() >= 3 && $('.UV').val() < 6) {
+            else if (UVIndex >= 3 && UVIndex < 6) {
                 $('.UV').attr('class', 'UVmed')
             }
-            else if ($('.UV').val() >= 6 && $('.UV').val() < 8) {
+            else if (UVIndex >= 6 && UVIndex < 8) {
                 $('.UV').attr('class', 'UVhigh')
             }
-            else if ($('.UV').val() >= 8 && $('.UV').val() < 11) {
+            else if (UVIndex >= 8 && UVIndex < 11) {
                 $('.UV').attr('class', 'UVvery')
             }
-            else if ($('.UV').val() >= 11) {
+            else if (UVIndex >= 11) {
                 $('.UV').attr('class', 'UVext')
             }
         })
