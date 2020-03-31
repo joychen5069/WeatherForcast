@@ -8,7 +8,7 @@ Here's how it works. You type in whatever city it is you want to look up the wea
 
 It will also give you the weather for the next five days so that you can plan out a few days in advance if that's your thing. The UI is constantly being improved so if there are a few stylistic things that you are not a fan of, I'm working on it. 
 
-# the works
+# The works
 The application is mostly powered through javaScript. There are some HTML elements and some CSS so that it looks usable. Your city search should look like below. 
 
 Enjoy!
