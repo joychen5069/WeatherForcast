@@ -1,9 +1,22 @@
 body {
-    background-color: aqua;
+    background-color: rgb(212, 212, 212);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.card {
+    margin-top: 10px;
+    border-color: gray;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 /* add UV index below */
-.UVlow {
+.UVlow{
     background-color: rgb(95, 255, 95);
 }
 
@@ -11,8 +24,8 @@ body {
     background-color: yellow;
 }
 
-.UVhigh {
-    background-color: rgb(255, 145, 0);
+.UVhigh{
+    background-color: rgb(248, 181, 74);
 }
 
 .UVvery {
@@ -23,4 +36,18 @@ body {
 .UVext {
     background-color: purple;
     color: white;
+}
+
+.humidity,
+.temperature {
+    font-size: smaller;
+}
+
+.UV {
+    display: inline;
+}
+
+/* remove bullet points */
+ul {
+    list-style-type: none;
 }

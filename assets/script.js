@@ -5,7 +5,8 @@ const APIkey = "db564efd201bdbb52479e58ddd22fc02"
 
 
 //dates
-var current = moment().format('L');
+var current = moment().format('ll');
+$('.currentDate').append(current)
 
 //search for a city
 $('#find-city').on('click', function (event) {
@@ -30,7 +31,7 @@ $('#find-city').on('click', function (event) {
         var iconURL = "http://openweathermap.org/img/w/" + icon + ".png";
        
         //append city name
-        $('.city-name').text(JSON.stringify(response.city.name) + " " + current)
+        $('.city-name').text(response.city.name + " ")
         $('.icon').attr('src', iconURL)
         //add current temp
         console.log(response.list[0].main.temp)
@@ -55,32 +56,32 @@ $('#find-city').on('click', function (event) {
         }).then(function (response) {
             console.log(response)
             $('.UV').text("UV Index: " + JSON.stringify(response[0].value))
-
+            
             var UVIndex = JSON.stringify(response[0].value)
             console.log(UVIndex)
 
             //add class to UV to add color later
             if (UVIndex < 3) {
-                $('.UV').attr('class', 'UVlow')
+                $('.UV').attr('class', 'UVlow btn')
             }
             else if (UVIndex >= 3 && UVIndex < 6) {
-                $('.UV').attr('class', 'UVmed')
+                $('.UV').attr('class', 'UVmed btn')
             }
             else if (UVIndex >= 6 && UVIndex < 8) {
-                $('.UV').attr('class', 'UVhigh')
+                $('.UV').attr('class', 'UVhigh btn')
             }
             else if (UVIndex >= 8 && UVIndex < 11) {
-                $('.UV').attr('class', 'UVvery')
+                $('.UV').attr('class', 'UVvery btn')
             }
             else if (UVIndex >= 11) {
-                $('.UV').attr('class', 'UVext')
+                $('.UV').attr('class', 'UVext btn')
             }
         })
 
         //create five day weather forcast
         var date = 1
         for (var i = 1; i < 6; i++) {
-            var futureDay = moment().add(i, 'days').format('L');
+            var futureDay = moment().add(i, 'days').format('ll');
             // var day = JSON.parse($(".date" + i))
             $('#date' + i).empty();
             $('#date' + i).append(futureDay)
@@ -94,7 +95,7 @@ $('#find-city').on('click', function (event) {
             $('#icon' + i).attr('src', iconURLFut)
 
             //add temp
-            var tempFut = ("Temperature: " + JSON.stringify(response.list[i].main.temp) + " °F")
+            var tempFut = ("Temp: " + JSON.stringify(response.list[i].main.temp) + " °F")
             console.log(tempFut)
             $('#temp' + i).empty();
             $('#temp' + i).append(tempFut)
@@ -109,7 +110,7 @@ $('#find-city').on('click', function (event) {
         }
 
 
-    })
+    
     //create old searches list in local storage
      if (localStorage.getItem('#list') === null) {
         var searchList = []
@@ -118,7 +119,8 @@ $('#find-city').on('click', function (event) {
         var searchList = JSON.parse(localStorage.getItem('#list'))
     }
   
-    searchList.push(city)
+    var citySearched = response.city.name
+    searchList.push(citySearched)
     console.log(searchList)
     localStorage.setItem('#list', JSON.stringify(searchList))
 
@@ -132,6 +134,6 @@ $('#find-city').on('click', function (event) {
         ul.prepend(li);
         li.innerHTML += searchList
     })
-    
+})
 })
 
