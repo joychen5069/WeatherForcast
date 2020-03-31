@@ -14,68 +14,76 @@
   </head>
 
   <body>
-      <div class="container">
-    <header>
-      Weather Dashboard
-    </header>
-    <form id="city-form">
+    <div class="container">
+      <h1>
+        Weather Dashboard
+      </h1>
+      <div class="row">
+          <div class="card col-md-4 col-12">
+      <form id="city-form">
         <!-- insert search bar with side nav-->
         <label for="city-input"> Search for City</label>
-        <input type="text" id="city-input"><br>
+        <input type="text" id="city-input" /><br />
 
         <!-- add search button -->
-        <input id="find-city" type="submit" value="city search">
-    </form>
-    
-    <div class="search-list">
-      <!-- insert past searches here -->
-      <ul id="list"></ul>
+        <input id="find-city" type="submit" value="City Search" />
+      </form>
     </div>
-
-    <!-- insert main content below -->
-    <div>
+     
+      <!-- insert main content below -->
+      <div class="main card col-md-8 col-12">
         <h3 class="city-name"></h3>
-        <div class="icon"></div>
-      <div class="temp"></div>
-      <div class="humid"></div>
-      <div class="wind"></div>
-      <div class="UV"></div>
+        <h4 class="currentDate"></h4>
+        <img class="icon col-2"></img>
+        <div class="temp"></div>
+        <div class="humid"></div>
+        <div class="wind"></div>
+        <div><p class="UV"></p></div>
+      </div>
     </div>
 
-    <div class="fiveDay">
-        <div class="day day1 col-2">
-            <div id=date1></div>
-            <div id=icon1></div>
-            <div id=temp1></div>
-            <div id=humid1></div>
+    <div class="row">
+    <div class="search-list card col-md-4 col-12">
+        <h5>Recent Searches</h5>
+        <!-- insert past searches here -->
+        <ul id="list"></ul>
+      </div>
+      <div class="fiveDay card col-md-8 col-12">
+        <div class="row">
+          <div class="day day1 col">
+            <div class="date" id="date1"></div>
+            <img id="icon1"></img>
+            <div class="temperature" id="temp1"></div>
+            <div class="humidity" id="humid1"></div>
+          </div>
+          <div class="day day2 col">
+            <div class="date" id="date2"></div>
+            <img id="icon2"></img>
+            <div class="temperature" id="temp2"></div>
+            <div class="humidity" id="humid2"></div>
+          </div>
+          <div class="day day3 col">
+            <div class="date" id="date3"></div>
+            <img id="icon3"></img>
+            <div class="temperature" id="temp3"></div>
+            <div class="humidity" id="humid3"></div>
+          </div>
+          <div class="day day4 col">
+            <div class="date" id="date4"></div>
+            <img id="icon4"></img>
+            <div class="temperature" id="temp4"></div>
+            <div class="humidity" id="humid4"></div>
+          </div>
+          <div class="day day5 col">
+            <div class="date" id="date5"></div>
+            <img id="icon5"></img>
+            <div class="temperature" id="temp5"></div>
+            <div class="humidity" id="humid5"></div>
+          </div>
         </div>
-        <div class="day day2 col-2">
-            <div id=date2></div>
-            <div id=icon2></div>
-            <div id=temp2></div>
-            <div id=humid2></div>
-        </div>
-        <div class="day day3 col-2">
-            <div id=date3></div>
-            <div id=icon3></div>
-            <div id=temp3></div>
-            <div id=humid3></div>
-        </div>
-        <div class="day day4 col-2">
-            <div id=date4></div>
-            <div id=icon4></div>
-            <div id=temp4></div>
-            <div id=humid4></div>
-        </div>
-        <div class="day day5 col-2">
-            <div id=date5></div>
-            <div id=icon5></div>
-            <div id=temp5></div>
-            <div id=humid5></div>
-        </div>
-
+      </div>
     </div>
-</div>
+    </div>
     <!-- script tags below -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
